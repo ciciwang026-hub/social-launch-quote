@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>全平台账号 0–1 搭建 · 服务报价方案</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,opsz,wght@0,8..60,300;0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,300;1,8..60,400;1,8..60,600;1,8..60,700&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@300;400;500&family=Noto+Serif+SC:wght@300;400;500;600;700&family=Noto+Sans+SC:wght@300;400;500&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  :root {
+    --c-bg: #1c2644;
+    --c-bg-alt: #232f55;
+    --c-bg-light: #f0ece3;
+    --c-bg-light-alt: #e6e0d4;
+    --c-fg: #e2dcd0;
+    --c-fg-2: #8a96a8;
+    --c-fg-3: #4e5a6e;
+    --c-fg-light: #1a2030;
+    --c-fg-light-2: #5a6270;
+    --c-fg-light-3: #9aa0a8;
+    --c-accent: #c8a870;
+    --c-accent-deep: #a8884f;
+    --c-border: #2e3d5c;
+    --c-border-light: #cac4b4;
+
+    --f-display: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+    --f-heading: "Source Serif 4", "Noto Serif SC", Georgia, serif;
+    --f-body: "DM Sans", "Noto Sans SC", system-ui, sans-serif;
+    --f-mono: "IBM Plex Mono", "JetBrains Mono", monospace;
+
+    --col: 880px;
+    --pad-x: clamp(22px, 6vw, 64px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--c-bg);
+    color: var(--c-fg);
+    font-family: var(--f-body);
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ── Full-bleed alternating bands; content constrained to a tall column ── */
+  .band { width: 100%; }
+  .band.dark { background: var(--c-bg); color: var(--c-fg); }
+  .band.dark-alt { background: var(--c-bg-alt); color: var(--c-fg); }
+  .band.light { background: var(--c-bg-light); color: var(--c-fg-light); }
+  .wrap {
+    max-width: var(--col);
+    margin: 0 auto;
+    padding: clamp(56px, 9vh, 104px) var(--pad-x);
+  }
+
+  /* ── Shared type ── */
+  .kicker {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--c-accent);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .kicker::before {
+    content: "";
+    width: 34px; height: 1px;
+    background: var(--c-accent);
+    display: inline-block;
+  }
+  .band.light .kicker { color: var(--c-accent-deep); }
+  .band.light .kicker::before { background: var(--c-accent-deep); }
+
+  h2.sec {
+    font-family: var(--f-heading);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 5.4vw, 2.9rem);
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 22px 0 14px;
+  }
+  h2.sec em { font-style: italic; color: var(--c-accent); }
+  .band.light h2.sec em { color: var(--c-accent-deep); }
+
+  .lead {
+    font-size: clamp(1rem, 2.2vw, 1.2rem);
+    color: var(--c-fg-2);
+    max-width: 46ch;
+  }
+  .band.light .lead { color: var(--c-fg-light-2); }
+
+  .rule { height: 1px; background: var(--c-border); margin: 30px 0; }
+  .band.light .rule { background: var(--c-border-light); }
+  .rule.gold { background: linear-gradient(90deg, var(--c-accent), transparent); height: 2px; }
+
+  .ph {
+    color: var(--c-accent);
+    border-bottom: 1px dashed currentColor;
+    padding: 0 2px;
+    font-style: normal;
+  }
+  .band.light .ph { color: var(--c-accent-deep); }
+
+  /* ════════ HERO ════════ */
+  .hero { min-height: 96vh; display: flex; align-items: center; position: relative; overflow: hidden; }
+  .hero::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 70% at 80% 0%, rgba(200,168,112,0.10) 0%, transparent 55%),
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.018) 0 1px, transparent 1px 46px);
+    pointer-events: none;
+  }
+  .hero .wrap { position: relative; z-index: 1; width: 100%; }
+  .hero .stamp {
+    font-family: var(--f-mono);
+    font-size: 0.72rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--c-fg-2);
+  }
+  .hero .gold-line { width: 64px; height: 3px; background: var(--c-accent); margin: 30px 0; }
+  .hero h1 {
+    font-family: var(--f-display);
+    font-weight: 700;
+    font-size: clamp(2.9rem, 12vw, 5.6rem);
+    line-height: 1.0;
+    letter-spacing: -0.015em;
+  }
+  .hero h1 em { font-style: italic; color: var(--c-accent); font-weight: 600; }
+  .hero .sub {
+    font-family: var(--f-heading);
+    font-style: italic;
+    font-size: clamp(1.05rem, 2.6vw, 1.45rem);
+    color: var(--c-fg-2);
+    max-width: 40ch;
+    margin-top: 30px;
+    line-height: 1.5;
+  }
+  .hero .meta {
+    display: flex; flex-wrap: wrap; gap: 10px 40px;
+    margin-top: 48px;
+    font-family: var(--f-mono);
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    color: var(--c-fg-2);
+  }
+  .hero .meta b { color: var(--c-fg); font-weight: 500; }
+  .scroll-hint {
+    position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%);
+    font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.3em;
+    color: var(--c-fg-3); text-transform: uppercase; z-index: 1;
+  }
+
+  /* ════════ STAT STRIP ════════ */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--c-border); border: 1px solid var(--c-border); margin-top: 8px; }
+  .band.light .stats { background: var(--c-border-light); border-color: var(--c-border-light); }
+  .stat { background: var(--c-bg); padding: 26px 18px; }
+  .band.light .stat { background: var(--c-bg-light); }
+  .stat .n { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.8rem, 6vw, 2.8rem); line-height: 1; color: var(--c-accent); }
+  .band.light .stat .n { color: var(--c-fg-light); }
+  .stat .l { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--c-fg-2); margin-top: 12px; }
+  .band.light .stat .l { color: var(--c-fg-light-2); }
+
+  /* ════════ PHASE TIMELINE ════════ */
+  .phase { display: grid; grid-template-columns: 132px 1fr; gap: 0; border-top: 1px solid var(--c-border-light); }
+  .phase:last-child { border-bottom: 1px solid var(--c-border-light); }
+  .phase .when { padding: 28px 18px 28px 0; }
+  .phase .when .ph-no { font-family: var(--f-display); font-weight: 700; font-size: 2rem; color: var(--c-accent-deep); line-height: 1; }
+  .phase .when .ph-day { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.08em; color: var(--c-fg-light-3); margin-top: 8px; }
+  .phase .what { padding: 28px 0 28px 26px; border-left: 1px solid var(--c-border-light); }
+  .phase .what h3 { font-family: var(--f-heading); font-weight: 600; font-size: 1.3rem; margin-bottom: 6px; }
+  .phase .what .goal { color: var(--c-fg-light-2); font-size: 0.96rem; margin-bottom: 14px; }
+  .phase .what ul { list-style: none; display: grid; gap: 8px; }
+  .phase .what li { position: relative; padding-left: 20px; font-size: 0.94rem; color: var(--c-fg-light); }
+  .phase .what li::before { content: "—"; position: absolute; left: 0; color: var(--c-accent-deep); }
+
+  /* ════════ DELIVERABLE TABLE ════════ */
+  .tbl { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.95rem; }
+  .tbl th, .tbl td { text-align: left; padding: 16px 12px; border-bottom: 1px solid var(--c-border); vertical-align: top; }
+  .tbl th { font-family: var(--f-mono); font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-fg-2); font-weight: 400; }
+  .tbl td .m-t { font-weight: 500; color: var(--c-fg); font-size: 1rem; }
+  .tbl td .m-d { color: var(--c-fg-2); font-size: 0.86rem; margin-top: 4px; }
+  .tbl td.price { font-family: var(--f-mono); color: var(--c-accent); white-space: nowrap; text-align: right; font-size: 1rem; }
+  .tbl tr.total td { border-bottom: none; border-top: 2px solid var(--c-accent); padding-top: 20px; }
+  .tbl tr.total .m-t { font-family: var(--f-heading); font-size: 1.15rem; }
+  .tbl tr.total td.price { font-size: 1.5rem; font-weight: 500; }
+
+  /* ════════ TIER CARDS ════════ */
+  .tiers { display: grid; gap: 18px; margin-top: 8px; }
+  .tier { border: 1px solid var(--c-border-light); padding: 30px clamp(22px,4vw,34px); position: relative; background: var(--c-bg-light); }
+  .tier.featured { border: 2px solid var(--c-accent-deep); background: #fff; box-shadow: 0 18px 50px -28px rgba(168,136,79,0.55); }
+  .tier .badge { position: absolute; top: -12px; right: 26px; background: var(--c-accent-deep); color: #fff; font-family: var(--f-mono); font-size: 0.64rem; letter-spacing: 0.16em; text-transform: uppercase; padding: 5px 12px; }
+  .tier .t-name { font-family: var(--f-heading); font-weight: 600; font-size: 1.4rem; }
+  .tier .t-price { font-family: var(--f-display); font-weight: 700; font-size: clamp(1.8rem, 5vw, 2.4rem); color: var(--c-accent-deep); margin: 6px 0 4px; }
+  .tier .t-for { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--c-fg-light-3); }
+  .tier .t-desc { font-size: 0.94rem; color: var(--c-fg-light-2); margin-top: 16px; line-height: 1.55; }
+
+  /* ════════ PAYMENT STEPS ════════ */
+  .pay { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 8px; }
+  .pay .step { border: 1px solid var(--c-border); padding: 24px 20px; }
+  .pay .step .pct { font-family: var(--f-display); font-weight: 700; font-size: 2.4rem; color: var(--c-accent); line-height: 1; }
+  .pay .step .when { font-family: var(--f-mono); font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--c-fg-2); margin: 12px 0 8px; }
+  .pay .step .desc { font-size: 0.9rem; color: var(--c-fg-2); }
+
+  /* ════════ TWO-COLUMN LISTS ════════ */
+  .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 44px; margin-top: 8px; }
+  .cols h4 { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-accent-deep); margin-bottom: 14px; }
+  .cols ul { list-style: none; display: grid; gap: 10px; }
+  .cols li { position: relative; padding-left: 20px; font-size: 0.92rem; color: var(--c-fg-light); line-height: 1.5; }
+  .cols li::before { content: "·"; position: absolute; left: 4px; color: var(--c-accent-deep); font-weight: 700; }
+
+  /* ════════ ABOUT ════════ */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px 44px; margin-top: 24px; }
+  .about-grid .blk h4 { font-family: var(--f-mono); font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--c-accent); margin-bottom: 12px; }
+  .about-grid .blk p { color: var(--c-fg-2); font-size: 0.94rem; }
+  .about-grid .blk b { color: var(--c-fg); font-weight: 500; }
+
+  /* ════════ CTA ════════ */
+  .cta h2.sec { max-width: 18ch; }
+  .contact { display: flex; flex-wrap: wrap; gap: 14px 40px; margin-top: 30px; font-family: var(--f-mono); font-size: 0.82rem; letter-spacing: 0.06em; color: var(--c-fg-2); }
+  .contact b { color: var(--c-accent); font-weight: 500; }
+  .foot { font-family: var(--f-mono); font-size: 0.66rem; letter-spacing: 0.08em; color: var(--c-fg-3); padding: 30px var(--pad-x); text-align: center; border-top: 1px solid var(--c-border); }
+
+  /* ── Reveal on scroll ── */
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  /* ── Responsive ── */
+  @media (max-width: 680px) {
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .pay { grid-template-columns: 1fr; }
+    .cols, .about-grid { grid-template-columns: 1fr; }
+    .phase { grid-template-columns: 92px 1fr; }
+    .tbl th:nth-child(2), .tbl td:nth-child(2) { display: none; }
+  }
+  @media print {
+    body { background: #fff; }
+    .band, .stat, .tier { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .scroll-hint { display: none; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HERO ════════════════ -->
+<header class="band dark hero">
+  <div class="wrap">
+    <div class="stamp">服务报价方案 · 2026 · 致 <span class="ph">[客户 / 品牌名称]</span></div>
+    <div class="gold-line"></div>
+    <h1>全平台账号<br /><em>0–1 搭建</em></h1>
+    <p class="sub">抖音 · 小红书 · 视频号 · TikTok · YouTube 五平台从零启动，三阶段 30 个工作日全流程落地品牌视觉、内容体系与运营方案。</p>
+    <div class="meta">
+      <span>出品 · <b>Cici</b></span>
+      <span>周期 · <b>30 工作日 / 三阶段</b></span>
+      <span>报价 v1 · 有效期 <b class="ph">[XX]</b> 天</span>
+    </div>
+  </div>
+  <div class="scroll-hint">向下滚动 ↓</div>
+</header>
+
+<!-- ════════════════ 01 速览 ════════════════ -->
+<section class="band dark-alt">
+  <div class="wrap reveal">
+    <div class="kicker">01 — 项目速览</div>
+    <h2 class="sec">从零到一，<em>一次把底座打牢</em></h2>
+    <p class="lead">不是代发几条视频，而是把五大平台的"品牌门面 + 内容生产系统 + 冷启动打法"一次性搭建完成，交付即可由团队自运营。</p>
+    <div class="rule gold"></div>
+    <div class="stats">
+      <div class="stat"><div class="n">5</div><div class="l">全平台<br>国内 3 + 海外 2</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">交付阶段<br>调研→素材→运营</div></div>
+      <div class="stat"><div class="n">30</div><div class="l">工作日<br>全流程落地</div></div>
+      <div class="stat"><div class="n">1</div><div class="l">个月<br>交付后答疑</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 02 三阶段 ════════════════ -->
+<section class="band light">
+  <div class="wrap reveal">
+    <div class="kicker">02 — 三阶段全流程</div>
+    <h2 class="sec">每 10 个工作日，<em>一个完整里程碑</em></h2>
+    <div style="margin-top:34px">
+      <div class="phase">
+        <div class="when"><div class="ph-no">01</div><div class="ph-day">第 1–10 工作日</div></div>
+        <div class="what">
+          <h3>品牌调研 · 账号注册 · VI 视觉对齐</h3>
+          <div class="goal">把"门面"立起来：调研定位 + 全平台开号认证 + 统一视觉与话术。</div>
+          <ul>
+            <li>深度品牌调研、竞品与受众分析</li>
+            <li>5 平台账号注册与企业号 / 蓝 V 认证、安全设置</li>
+            <li>全套 VI 视觉规范对齐：头像、封面、背景 banner</li>
+            <li>账号简介、标签关键词矩阵，国内外平台本地化话术</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="ph-no">02</div><div class="ph-day">第 11–20 工作日</div></div>
+        <div class="what">
+          <h3>主页布局 · 素材模板 · 档案库</h3>
+          <div class="goal">把"弹药"备齐：可复用的模板与素材体系。</div>
+          <ul>
+            <li>主页模块布局规划、置顶内容策划</li>
+            <li>品牌基础素材包制作</li>
+            <li>≥ 5 套账号固定封面模板 + 3 套简介备选文案</li>
+            <li>分赛道关键词库、基础素材档案库搭建</li>
+          </ul>
+        </div>
+      </div>
+      <div class="phase">
+        <div class="when"><div class="ph-no">03</div><div class="ph-day">第 21–30 工作日</div></div>
+        <div class="what">
+          <h3>内容规划 · 选题排期 · 冷启动方案</h3>
+          <div class="goal">把"打法"定清楚：从选题到涨粉的可执行系统。</div>
+          <ul>
+            <li>完整账号年度内容规划方案</li>
+            <li>首月全平台月度选题排期表</li>
+            <li>拍摄剪辑标准化模板、互动回复话术库</li>
+            <li>分平台差异化运营思路 + 冷启动涨粉执行方案</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 03 分项报价 ════════════════ -->
+<section class="band dark">
+  <div class="wrap reveal">
+    <div class="kicker">03 — 分项交付与报价</div>
+    <h2 class="sec">每一分钱，<em>都对应明确交付物</em></h2>
+    <p class="lead">以下为「标准版（5 平台全套）」的分项构成，可按客户预算增减模块。</p>
+    <table class="tbl">
+      <thead><tr><th>交付模块</th><th>核心交付物</th><th style="text-align:right">报价</th></tr></thead>
+      <tbody>
+        <tr><td><div class="m-t">品牌调研与定位</div></td><td><div class="m-d">竞品 / 受众 / 赛道调研 + 定位策略</div></td><td class="price">¥8,000</td></tr>
+        <tr><td><div class="m-t">全平台注册认证</div></td><td><div class="m-d">5 平台注册 + 企业号 / 蓝 V 认证代办 + 安全设置</div></td><td class="price">¥6,000</td></tr>
+        <tr><td><div class="m-t">VI 视觉系统</div></td><td><div class="m-d">5 平台头像 / 封面 / banner + 5 套封面模板 + 素材包 + 可编辑源文件</div></td><td class="price">¥18,000</td></tr>
+        <tr><td><div class="m-t">账号信息体系</div></td><td><div class="m-d">3 套简介（国内外本地化）+ 关键词矩阵 / 库 + 标签策略</div></td><td class="price">¥6,000</td></tr>
+        <tr><td><div class="m-t">内容体系</div></td><td><div class="m-d">年度内容规划 + 首月全平台排期 + 拍剪标准化模板 + 互动话术库</div></td><td class="price">¥18,000</td></tr>
+        <tr><td><div class="m-t">运营冷启动</div></td><td><div class="m-d">平台差异化运营思路 + 冷启动涨粉执行方案</div></td><td class="price">¥8,000</td></tr>
+        <tr><td><div class="m-t">交付后答疑</div></td><td><div class="m-d">1 个月线上答疑指导</div></td><td class="price">¥4,000</td></tr>
+        <tr class="total"><td><div class="m-t">标准版合计</div></td><td><div class="m-d">含全套可编辑源文件、运营操作手册、模板与关键词文档</div></td><td class="price">≈ ¥68,000</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- ════════════════ 04 三档套餐 ════════════════ -->
+<section class="band light">
+  <div class="wrap reveal">
+    <div class="kicker">04 — 三档套餐</div>
+    <h2 class="sec">按预算选择，<em>范围随价调整</em></h2>
+    <div class="tiers">
+      <div class="tier">
+        <div class="t-name">基础版</div>
+        <div class="t-price">¥28,000 – 38,000</div>
+        <div class="t-for">创业公司 / 个人 IP · 预算敏感</div>
+        <div class="t-desc">聚焦国内 3 平台为主，封面模板 3 套，年度规划简化为季度框架，答疑 2 周。适合先把核心阵地跑起来。</div>
+      </div>
+      <div class="tier featured">
+        <div class="badge">推荐</div>
+        <div class="t-name">标准版</div>
+        <div class="t-price">¥48,000 – 68,000</div>
+        <div class="t-for">成熟品牌 · 5 平台全套</div>
+        <div class="t-desc">即上方分项清单的完整交付：5 平台全部搭建，标准深度的视觉、内容与运营体系，1 个月答疑。性价比与完整度最佳平衡点。</div>
+      </div>
+      <div class="tier">
+        <div class="t-name">尊享版</div>
+        <div class="t-price">¥80,000 – 120,000</div>
+        <div class="t-for">品牌大 / 海外为重点 / 要求高</div>
+        <div class="t-desc">在标准版基础上增加：海外平台重点投入、定制拍摄分镜脚本、封面模板加至 10 套、季度复盘，及 3 个月陪跑答疑。</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 05 付款节点 ════════════════ -->
+<section class="band dark-alt">
+  <div class="wrap reveal">
+    <div class="kicker">05 — 付款节点</div>
+    <h2 class="sec">分三笔，<em>对应阶段成果</em></h2>
+    <div class="pay">
+      <div class="step"><div class="pct">40%</div><div class="when">签约启动</div><div class="desc">项目启动金，覆盖前期投入后正式开工。</div></div>
+      <div class="step"><div class="pct">30%</div><div class="when">阶段二交付</div><div class="desc">素材模板与档案库验收通过后支付。</div></div>
+      <div class="step"><div class="pct">30%</div><div class="when">全部交付</div><div class="desc">尾款结清后，转移全套可编辑源文件与使用权。</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 06 报价不含 / 条款 ════════════════ -->
+<section class="band light">
+  <div class="wrap reveal">
+    <div class="kicker">06 — 报价不含与关键条款</div>
+    <h2 class="sec">边界写在前面，<em>合作更顺</em></h2>
+    <div class="cols">
+      <div>
+        <h4>本报价不含</h4>
+        <ul>
+          <li>平台官方认证费（如企业认证、蓝 V 年费等）</li>
+          <li>付费投流 / 推广预算</li>
+          <li>正版字体、图片、音乐授权费</li>
+          <li>实际出镜拍摄、演员与场地（交付为模板，非成片）</li>
+          <li>海外注册所需境外手机号 / 网络环境 / 实体资料</li>
+          <li>第三方 SaaS 工具订阅费</li>
+        </ul>
+      </div>
+      <div>
+        <h4>关键条款</h4>
+        <ul>
+          <li>每个交付物含 2 轮修改，超出按 ¥800–1,500 / 次加收</li>
+          <li>客户单次反馈超 3 个工作日，工期相应顺延</li>
+          <li>海外平台政策导致的限流 / 封号 / 认证失败不可控，免责</li>
+          <li>答疑以线上为主、每周 ≤ <span class="ph">[X]</span> 次，不含代发 / 代运营 / 代回评</li>
+          <li>尾款结清后转移源文件与使用权，过程中版权归出品方</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 07 关于团队 ════════════════ -->
+<section class="band dark">
+  <div class="wrap reveal">
+    <div class="kicker">07 — 关于团队</div>
+    <h2 class="sec">操盘过 <em>月播放 70M+</em> 的海外 UGC 矩阵</h2>
+    <div class="stats" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 34px;">
+      <div class="stat"><div class="n">200+</div><div class="l">海外校园大使<br>全平台 UGC 矩阵</div></div>
+      <div class="stat"><div class="n">30M</div><div class="l">TikTok 单平台<br>月相关播放量</div></div>
+      <div class="stat"><div class="n">70M</div><div class="l">海外全平台<br>月相关播放量</div></div>
+    </div>
+    <div class="about-grid">
+      <div class="blk">
+        <h4>主理人</h4>
+        <p><b>Cici</b> — 操盘过多个科技大厂的主账号运营。搭建并管理海外 <b>200+ 校园大使</b> 的全平台 UGC 矩阵，覆盖 TikTok / Instagram / YouTube，实现 TikTok 单平台月相关播放 <b>30M</b>、海外全平台月相关播放 <b>70M</b>（品牌营销内容）。</p>
+      </div>
+      <div class="blk">
+        <h4>执行团队</h4>
+        <p>可配置 <b>2–3 人执行小团队</b>（视觉设计 / 内容策划 / 剪辑），并行推进以保证 30 工作日内的交付质量与速度。</p>
+      </div>
+      <div class="blk">
+        <h4>差异化</h4>
+        <p>同时理解 <b>国内（抖音 / 小红书 / 视频号）与海外（TikTok / YouTube）</b> 平台规则与本地化话术，避免一套话术套全平台。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ 08 下一步 ════════════════ -->
+<section class="band dark-alt cta">
+  <div class="wrap reveal">
+    <div class="kicker">08 — 下一步</div>
+    <h2 class="sec">确认套餐 → 签约 → <em>10 个工作日见首阶段成果</em></h2>
+    <p class="lead">如需调整范围或预算，可基于上方模块自由增减。期待与 <span class="ph">[客户 / 品牌名称]</span> 合作。</p>
+    <div class="contact">
+      <span>微信 · <b class="ph">[微信号]</b></span>
+      <span>邮箱 · <b class="ph">[邮箱]</b></span>
+      <span>报价日期 · <b class="ph">[2026.XX.XX]</b></span>
+    </div>
+  </div>
+</section>
+
+<div class="foot">本报价为商业服务方案，最终以双方签署的合作协议为准 · © 2026 Cici</div>
+
+<script>
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
+</script>
+</body>
+</html>
